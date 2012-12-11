@@ -7,7 +7,7 @@ App.Animation = function(){
 	var isPaused = false;
 	var processingInstance = null;
 
-	function init(){
+	function start(){
 		if(animation) animation.exit();
 	 	board = new Board(getRows(),getColumns(), getLifeProbability());
 		board.firstGeneration();
@@ -57,11 +57,12 @@ App.Animation = function(){
 
 
 	return {
-		init: init,
+		start: start,
 		pause: pause, 
 		getBoard : getBoard,
 		getRows: getRows,
 		getColumns: getColumns
 	}
 }();
+
 
