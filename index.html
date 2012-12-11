@@ -35,10 +35,16 @@
               
               <br/> 
               <a href="#" class="btn btn-primary" onclick="init();">Start!</a>
+              <a href="#" class="btn" onclick="pause();" id="pause_button">Pause</a>
             </fieldset>
           </form>
-
-          
+    
+          <fieldset>
+              <legend>Current game</legend>
+              <div># Generation: <span id="generation">0</span></div>
+              <div># Alive cells: <span id="alive_cells">0</span></div>
+          </fieldset>
+    
         </div>
         <div class="span8">
           <canvas id="canvas1"></canvas>
