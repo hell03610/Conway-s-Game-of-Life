@@ -34,8 +34,8 @@
               <input type="text" placeholder="0.2" id="life_probability" value="0.2">
               
               <br/> 
-              <a href="#" class="btn btn-primary" onclick="App.Animation.start();">Start!</a>
-              <a href="#" class="btn" onclick="App.Animation.pause();" id="pause_button">Pause</a>
+              <a href="#" class="btn btn-primary" id="start">Start!</a>
+              <a href="#" class="btn" id="pause">Pause</a>
             </fieldset>
           </form>
     
@@ -51,10 +51,12 @@
         </div>
       </div>
     </div>
-    <script src="app/Cell.js"></script>
-    <script src="app/Board.js"></script>
-    <script src="app/conway.js"></script>
-    <script src="app/init.js"></script>
+    <script src="app/domain/Cell.js"></script>
+    <script src="app/domain/Board.js"></script>
+    <script src="app/ui/App.Animation.js"></script>
+    <script src="app/ui/App.TuneControllers.js"></script>
+    <script src="app/ui/App.Sketch.js"></script>
+    <script src="app/ui/init.js"></script>
 
   </body>
 </html>

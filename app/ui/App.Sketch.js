@@ -1,9 +1,9 @@
-var conwaySketch = function($p) {
+App.Sketch = function($p) {
 
     var w = 600,
         h = 400;
-    var columns = App.Animation.getColumns();
-    var rows = App.Animation.getRows();
+    var columns = App.TuneControllers.getColumns();
+    var rows = App.TuneControllers.getRows();
     var diameterX = (w / columns);
     var diameterY = (h / rows);
     var generation = 0;
@@ -19,7 +19,6 @@ var conwaySketch = function($p) {
         $p.frameRate(4);
         board = App.Animation.getBoard();
     }
-    $p.setup = setup;
 
     function initBackground(){
         $p.background(100);
@@ -54,6 +53,8 @@ var conwaySketch = function($p) {
         $generation.text(generation);
         $aliveCells.text(totalCells);
     }
+    
+    $p.setup = setup;
     $p.draw = draw;
 };
 
