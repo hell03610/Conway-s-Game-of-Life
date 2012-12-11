@@ -54,4 +54,14 @@ describe("Cell", function() {
       expect(cell.isAlive()).toBeFalsy();
    });
 
+  it("knows if it is a newborn", function(){
+    var cell = new Cell(DEAD);
+    var aliveNeighbours = 3;
+    cell.tick(aliveNeighbours);
+    expect(cell.isNewBorn()).toBeTruthy();
+    cell.tick(aliveNeighbours);
+    expect(cell.isNewBorn()).toBeFalsy();
+    
+  });
+
  });
