@@ -13,6 +13,7 @@ App.Animation = function(){
 		board.firstGeneration();
 	 	var canvas = document.getElementById("canvas1");
 		animation = new Processing(canvas, conwaySketch);
+		processingInstance = null;
 	}
 
 	function getBoard(){
