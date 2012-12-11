@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Conray</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="app/processing-1.4.1.js"></script>
+    <style>
+    .conway {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="conway hero-unit">
+      <h1>El juego de la vida</h1>
+      <p class="lead">
+        El juego de la vida de Conway visualizado con processing.js
+      </p>
+        <canvas id="canvas1" width="200px" height="200px"></canvas>
+      </div>
+    </div>
+    <script src="app/Cell.js"></script>
+    <script src="app/Board.js"></script>
+    <script src="app/conway.js"></script>
+    <script src="app/init.js"></script>
+
+  </body>
+</html>
