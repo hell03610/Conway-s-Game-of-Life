@@ -1,42 +1,67 @@
-rows = 0;
-columns = 0;
-board = null;
-animation = null;
-isPaused = false;
-processingInstance = null;
+var App = App || {};
 
-function init(){
-	if(animation) animation.exit();
- 	var canvas = document.getElementById("canvas1");
- 	rows = $('#rows').val();
- 	columns = $('#columns').val();
- 	var lifeProbability = $('#life_probability').val();
-	board = new Board(rows,columns, lifeProbability);
-	board.firstGeneration();
-	animation = new Processing(canvas, conwaySketch);
-}
+App.Animation = function(){
 
+	var board = null;
+	var animation = null;
+	var isPaused = false;
+	var processingInstance = null;
 
-function pause(){
-	if(isPaused) {
-		switchSketchState(true);
-		isPaused = false;
-		$('#stop_button').text('Pause');
+	function init(){
+		if(animation) animation.exit();
+	 	board = new Board(getRows(),getColumns(), getLifeProbability());
+		board.firstGeneration();
+	 	var canvas = document.getElementById("canvas1");
+		animation = new Processing(canvas, conwaySketch);
 	}
-	else{
-		switchSketchState(false);
-		isPaused = true;
-		$('#stop_button').text('Resume');
-	}
-}
 
- function switchSketchState(toOn) {
-    if (!processingInstance) {
-        processingInstance = Processing.getInstanceById('canvas1');
-    }
-    if (toOn) {
-       processingInstance.loop();  
-    } else {
-       processingInstance.noLoop();
-    }
- }
+	function getBoard(){
+		return board;
+	}
+
+	function getRows(){
+		return $('#rows').val();
+	}
+
+	function getColumns(){
+		return $('#columns').val();
+	}
+
+	function getLifeProbability(){
+		return $('#life_probability').val();
+	}
+
+	function pause(){
+		if(isPaused) {
+			switchSketchState(true);
+			isPaused = false;
+			$('#stop_button').text('Pause');
+		}
+		else{
+			switchSketchState(false);
+			isPaused = true;
+			$('#stop_button').text('Resume');
+		}
+	}
+
+	 function switchSketchState(toOn) {
+	    if (!processingInstance) {
+	        processingInstance = Processing.getInstanceById('canvas1');
+	    }
+	    if (toOn) {
+	       processingInstance.loop();  
+	    } else {
+	       processingInstance.noLoop();
+	    }
+	 }
+
+
+	return {
+		init: init,
+		pause: pause, 
+		getBoard : getBoard,
+		getRows: getRows,
+		getColumns: getColumns
+	}
+}();
+

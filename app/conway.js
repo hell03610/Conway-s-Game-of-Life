@@ -2,18 +2,22 @@ var conwaySketch = function($p) {
 
     var w = 600,
         h = 400;
+    var columns = App.Animation.getColumns();
+    var rows = App.Animation.getRows();
     var diameterX = (w / columns);
     var diameterY = (h / rows);
     var generation = 0;
     var totalCells = 0;
     var $generation = $('#generation');
     var $aliveCells = $('#alive_cells');
-    
+    var board;
+
     
     function setup() {
         $p.size(w, h);
         $p.strokeWeight(2);
         $p.frameRate(4);
+        board = App.Animation.getBoard();
     }
     $p.setup = setup;
 
@@ -26,12 +30,12 @@ var conwaySketch = function($p) {
     function draw() {
     
         initBackground();
-          
+
         var X = diameterX * 0.5,
             Y = diameterY * 0.5;
 
         var totalCells = 0;
-    
+     
         for(var i=0;i<rows;i++){
           for(var j=0;j<columns;j++){
               var cell = board.get(i,j);
