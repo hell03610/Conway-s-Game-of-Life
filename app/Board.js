@@ -1,9 +1,9 @@
-var Board = function(rows, columns){
+var Board = function(rows, columns, lifeProbability){
 
-	this.rows = rows;
-	this.columns = columns;
+	this.rows = rows || 10;
+	this.columns = columns || 10;
 	this.board = null;
-	var LIFE_PROBABILITY = 0.6;
+	var LIFE_PROBABILITY = lifeProbability || 0.2;
 
 	this.firstGeneration = function(){
 		this.init();

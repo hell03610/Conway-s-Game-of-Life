@@ -8,7 +8,7 @@ var conwaySketch = function($p) {
     function setup() {
         $p.size(w, h);
         $p.strokeWeight(2);
-        $p.frameRate(2);
+        $p.frameRate(4);
     }
     $p.setup = setup;
 

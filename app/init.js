@@ -8,7 +8,8 @@ function init(){
  	var canvas = document.getElementById("canvas1");
  	rows = $('#rows').val();
  	columns = $('#columns').val();
-	board = new Board(rows,columns);
+ 	var lifeProbability = $('#life_probability').val();
+	board = new Board(rows,columns, lifeProbability);
 	board.firstGeneration();
 	animation = new Processing(canvas, conwaySketch);
 }
