@@ -21,8 +21,8 @@ App.Sketch = function($p) {
     }
 
     function initBackground(){
-        $p.background(100);
-        $p.stroke(255);
+        $p.background(240,240,216);
+        $p.stroke(96,72,72);
     }
 
     function draw() {
@@ -39,8 +39,8 @@ App.Sketch = function($p) {
               var cell = board.get(i,j);
               if(cell && cell.isAlive()){
                 
-                if(cell.isNewBorn()) $p.fill(100, 200, 100);
-                else $p.fill(100, 121, 184);
+                if(cell.isNewBorn()) $p.fill(192,216,96);
+                else $p.fill(120,144,72);
 
                 $p.ellipse(X, Y, diameterX, diameterY);
                 totalCells++;
