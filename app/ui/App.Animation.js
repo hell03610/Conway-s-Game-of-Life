@@ -41,7 +41,7 @@ App.Animation = function(){
 		var rows = App.TuneControllers.getRows(),
 			columns = App.TuneControllers.getColumns(),
 			lifeProbability = App.TuneControllers.getLifeProbability(); 
-		board = new Board(rows,columns,lifeProbability);
+		board = new LaserBoard(rows,columns,lifeProbability);
 		board.firstGeneration();
 	}
 
