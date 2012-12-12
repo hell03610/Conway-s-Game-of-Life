@@ -64,4 +64,16 @@ describe("Cell", function() {
     
   });
 
+  it("remembers its last life status", function(){
+    var cell = new Cell(DEAD);
+    var aliveNeighbours = 3;
+    cell.tick(aliveNeighbours);
+    expect(cell.wasAlive()).toBeFalsy();
+    
+    aliveNeighbours = 0;
+    cell.tick(aliveNeighbours);
+    expect(cell.wasAlive()).toBeTruthy();
+        
+  })
+
  });
