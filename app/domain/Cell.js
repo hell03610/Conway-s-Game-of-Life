@@ -4,7 +4,7 @@ var DEAD = -1;
 var Cell = function(lifeStatus) {
 
 	this.lifeStatus = lifeStatus;
-	this.lastLifeStatus = DEAD;
+	this.lastLifeStatus = lifeStatus;
 	this.newBorn = false;
 	this.aliveNeighbours = 0;
 
@@ -40,6 +40,10 @@ var Cell = function(lifeStatus) {
 		this.lastLifeStatus = this.lifeStatus;
 		this.lifeStatus = DEAD;
 		this.newBorn = false;
+	}
+
+	this.resetLastLifeStatus = function(){
+		this.lastLifeStatus = this.lifeStatus;
 	}
 
 	this.wasAlive = function(){

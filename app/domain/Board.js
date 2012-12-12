@@ -19,7 +19,7 @@ var Board = function(rows, columns, lifeProbability){
 		}
 	}
 
-	this.aliveNeighboursFor = function(x,y){
+	this.laserAliveNeighboursFor = function(x,y){
 		var alive = 0;
 		if(this.isAlive(x+1,y+1)) alive++;
 		if(this.isAlive(x+1,y)) alive++;
@@ -32,10 +32,42 @@ var Board = function(rows, columns, lifeProbability){
 		return alive;
 	}
 
+
+	this.snapshotAliveNeighboursFor = function(x,y){
+		var alive = 0;
+		if(this.wasAlive(x+1,y+1)) alive++;
+		if(this.wasAlive(x+1,y)) alive++;
+		if(this.wasAlive(x+1,y-1)) alive++;
+		if(this.wasAlive(x,y+1)) alive++;
+		if(this.wasAlive(x,y-1)) alive++;
+		if(this.wasAlive(x-1,y+1)) alive++;
+		if(this.wasAlive(x-1,y)) alive++;
+		if(this.wasAlive(x-1,y-1)) alive++;
+		return alive;
+	}
+
 	this.nextGeneration = function(){
+		this.snapshotNextGeneration();
+	}
+
+	this.snapshotNextGeneration = function(){
 		for(var i=0;i<this.rows;i++){
 			for(var j=0;j<this.columns;j++){
-				var aliveNeighbours = this.aliveNeighboursFor(i,j);
+				var aliveNeighbours = this.snapshotAliveNeighboursFor(i,j);
+				this.get(i,j).tick(aliveNeighbours);
+			}
+		}
+		for(var i=0;i<this.rows;i++){
+			for(var j=0;j<this.columns;j++){
+				this.board[i][j].resetLastLifeStatus();
+			}
+		}	
+	}
+
+	this.laserNextGeneration = function(){
+		for(var i=0;i<this.rows;i++){
+			for(var j=0;j<this.columns;j++){
+				var aliveNeighbours = this.laserAliveNeighboursFor(i,j);
 				this.get(i,j).tick(aliveNeighbours);
 			}
 		}
@@ -57,5 +89,11 @@ var Board = function(rows, columns, lifeProbability){
 		var cell = this.get(x, y);
 		if(!cell) return false;
 		return cell.isAlive();		
+	}
+
+	this.wasAlive = function(x,y){
+		var cell = this.get(x, y);
+		if(!cell) return false;
+		return cell.wasAlive();		
 	}
 }

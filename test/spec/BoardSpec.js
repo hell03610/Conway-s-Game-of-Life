@@ -24,13 +24,13 @@ describe("Board", function() {
   	it("counts how many alive neighbours given a cell position", function(){
   		spyOn(board, 'lifeStatus').andReturn(ALIVE);
   		board.firstGeneration();
-  		expect(board.aliveNeighboursFor(5,5)).toEqual(8);	
+  		expect(board.laserAliveNeighboursFor(5,5)).toEqual(8);	
   	});
 
   	it("board is not rounded", function(){
   		spyOn(board, 'lifeStatus').andReturn(ALIVE);
   		board.firstGeneration();
-  		expect(board.aliveNeighboursFor(0,0)).toEqual(3);	
+  		expect(board.laserAliveNeighboursFor(0,0)).toEqual(3);	
   	});
   });
 
