@@ -9,7 +9,7 @@ App.TuneControllers = function(){
 	}
 
 	function getLifeProbability(){
-		return $('#life_probability').val();
+		return parseFloat($('#slider').slider('value')) / 100;
 	}
 
 	return {

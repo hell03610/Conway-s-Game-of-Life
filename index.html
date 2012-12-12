@@ -3,8 +3,12 @@
   <head>
     <title>Conway</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="jquery-ui-bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-bootstrap/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link type="text/css" href="jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.9.2.custom.css" rel="stylesheet" />
+    <link type="text/css" href="jquery-ui-bootstrap/bootstrap/bootstrap.min.css" rel="stylesheet">
+   
     <script src="app/processing-1.4.1.js"></script>
     <style>
     .conway {
@@ -18,7 +22,9 @@
     .conway .lead{
       color: #789048;
     }
-
+    #slider .ui-slider-range { background: #C0D860; }
+    #slider .ui-slider-handle { border-color: #604848; }
+   
     </style>
   </head>
   <body>
@@ -35,20 +41,21 @@
           <form>
             <fieldset>
               <legend>Play with options</legend>
-              <div class="input-append">
-                <input type="text" placeholder="10" id="rows" value="80" class="input-mini" required>
+              <div class="input-prepend">
                 <span class="add-on" style="width:53px">rows</span>
+                <input type="text" placeholder="10" id="rows" value="80" required>
               </div>
-              <div class="input-append">
-                <input type="text" placeholder="10" id="columns" value="80" class="input-mini" required>
+              <div class="input-prepend">
                 <span class="add-on">columns</span>
+                <input type="text" placeholder="10" id="columns" value="80" required>
               </div>
-              <label>Life probability</label>
-              <input type="text" placeholder="0.2" id="life_probability" value="0.2">
-              
+              <label>Life probability: <span id="life_probability">20%</span></label>
+              <div id="slider"></div>
               <br/> 
+              <div style="text-align:center">
               <a href="#" class="btn btn-success" id="start">Start!</a>
               <a href="#" class="btn" id="pause">Pause</a>
+              <div>
             </fieldset>
           </form>
     
@@ -64,7 +71,7 @@
         </div>
       </div>
       </div>
-    </div>
+    </div>   
     <script src="app/domain/Cell.js"></script>
     <script src="app/domain/Board.js"></script>
     <script src="app/domain/LaserBoard.js"></script>
@@ -72,6 +79,21 @@
     <script src="app/ui/App.TuneControllers.js"></script>
     <script src="app/ui/App.Sketch.js"></script>
     <script src="app/ui/init.js"></script>
+
+    <script>
+      $(function () {
+        $('#slider').slider({
+          value: 20,
+          min: 0,
+          max: 100,
+          step: 5,
+          orientation: "horizontal",
+          range: "min",
+          change: function() { $('#life_probability').text($('#slider').slider('value') + '%'); },
+          slide: function() { $('#life_probability').text($('#slider').slider('value') + '%'); }
+        });
+      });
+    </script>
 
   </body>
 </html>
