@@ -48,7 +48,8 @@ var Board = function(rows, columns, lifeProbability){
 	}
 
 	this.get = function(x,y){
-		if(x >= this.rows || x < 0 || y >= this.columns || y < 0) return null;
+		var isBeyondLimits = (x >= this.rows || x < 0 || y >= this.columns || y < 0);
+		if(isBeyondLimits) return null;
 		return this.board[x][y];
 	}
 
