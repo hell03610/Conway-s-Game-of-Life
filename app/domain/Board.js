@@ -3,8 +3,14 @@ var Board = function(rows, columns, lifeProbability){
 	this.rows = rows || 10;
 	this.columns = columns || 10;
 	this.board = null;
+	this.rules = new Rules();
 	var LIFE_PROBABILITY = lifeProbability || 0.2;
 
+
+	this.setRules = function(rules){
+		this.rules = rules;
+	}
+	
 	this.firstGeneration = function(){
 		this.init();
 	}
@@ -40,7 +46,8 @@ var Board = function(rows, columns, lifeProbability){
 		for(var i=0;i<this.rows;i++){
 			for(var j=0;j<this.columns;j++){
 				var aliveNeighbours = this.snapshotAliveNeighboursFor(i,j);
-				this.get(i,j).tick(aliveNeighbours);
+				//this.get(i,j).tick(aliveNeighbours);
+				this.rules.tick(this.get(i,j), aliveNeighbours);
 			}
 		}
 		for(var i=0;i<this.rows;i++){

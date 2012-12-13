@@ -3,17 +3,16 @@
   <head>
     <title>Conway</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script type="text/javascript" src="jquery-ui-bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="jquery-ui-bootstrap/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.9.2.custom.css" />
+    <script src="jquery-ui-bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="jquery-ui-bootstrap/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link type="text/css" href="jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.9.2.custom.css" rel="stylesheet" />
-    <link type="text/css" href="jquery-ui-bootstrap/bootstrap/bootstrap.min.css" rel="stylesheet">
-   
     <script src="app/processing-1.4.1.js"></script>
     <style>
     .conway {
         text-align: center;
         background-color:#F0F0D8;
+        padding: 40px;
     }
     .conway h1{
       color:#C0D860;
@@ -22,7 +21,18 @@
     .conway .lead{
       color: #789048;
     }
-    #slider .ui-slider-range { background: #C0D860; }
+    .btn:active, .btn.active {
+      color: white;
+      background-color: #61C161;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+    .btn-group {
+      margin-bottom: 5px;
+    }
+    label {
+      margin-top: 15px;
+    }
+    #slider .ui-slider-range { background: #61C161; }
     #slider .ui-slider-handle { border-color: #604848; }
    
     </style>
@@ -41,7 +51,8 @@
           <form>
             <fieldset>
               <legend>Play with options</legend>
-              <div class="input-prepend">
+              <label>Dimensions</label>
+             <div class="input-prepend">
                 <span class="add-on" style="width:53px">rows</span>
                 <input type="text" placeholder="10" id="rows" value="80" required>
               </div>
@@ -49,13 +60,40 @@
                 <span class="add-on">columns</span>
                 <input type="text" placeholder="10" id="columns" value="80" required>
               </div>
+
+              <label>Neighbours to live</label>
+              <div class="btn-group" id="neighbours-to-live">
+                <a href="#" class="btn">1</a>
+                <a href="#" class="btn active">2</a>
+                <a href="#" class="btn active">3</a>
+                <a href="#" class="btn">4</a>
+                <a href="#" class="btn">5</a>
+                <a href="#" class="btn">6</a>
+                <a href="#" class="btn">7</a>
+                <a href="#" class="btn">8</a>
+              </div>
+             
+              <label>Neighbours to reborn</label>
+              <div class="btn-group" id="neighbours-to-reborn">
+                <a href="#" class="btn">1</a>
+                <a href="#" class="btn">2</a>
+                <a href="#" class="btn active">3</a>
+                <a href="#" class="btn">4</a>
+                <a href="#" class="btn">5</a>
+                <a href="#" class="btn">6</a>
+                <a href="#" class="btn">7</a>
+                <a href="#" class="btn">8</a>
+              </div>
+
               <label>Life probability: <span id="life_probability">20%</span></label>
               <div id="slider"></div>
-              <br/> 
+            
+              <br/>
               <div style="text-align:center">
               <a href="#" class="btn btn-success" id="start">Start!</a>
               <a href="#" class="btn" id="pause">Pause</a>
               <div>
+        
             </fieldset>
           </form>
     
@@ -73,27 +111,13 @@
       </div>
     </div>   
     <script src="app/domain/Cell.js"></script>
+    <script src="app/domain/Rules.js"></script>
     <script src="app/domain/Board.js"></script>
     <script src="app/domain/LaserBoard.js"></script>
     <script src="app/ui/App.Animation.js"></script>
     <script src="app/ui/App.TuneControllers.js"></script>
     <script src="app/ui/App.Sketch.js"></script>
     <script src="app/ui/init.js"></script>
-
-    <script>
-      $(function () {
-        $('#slider').slider({
-          value: 20,
-          min: 0,
-          max: 100,
-          step: 5,
-          orientation: "horizontal",
-          range: "min",
-          change: function() { $('#life_probability').text($('#slider').slider('value') + '%'); },
-          slide: function() { $('#life_probability').text($('#slider').slider('value') + '%'); }
-        });
-      });
-    </script>
-
+    
   </body>
 </html>

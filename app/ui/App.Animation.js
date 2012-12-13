@@ -9,8 +9,11 @@ App.Animation = function(){
 	var $start, $pause;
 	var canvasId = 'canvas1';
 
+	var tuning;
+
 	function init(){
 		bindButtons();
+		tuning = App.TuneControllers;
 	}
 
 	function bindButtons(){
@@ -38,10 +41,9 @@ App.Animation = function(){
 	}
 
 	function createBoard(){
-		var rows = App.TuneControllers.getRows(),
-			columns = App.TuneControllers.getColumns(),
-			lifeProbability = App.TuneControllers.getLifeProbability(); 
-		board = new Board(rows,columns,lifeProbability);
+		board = new Board(tuning.getRows(),tuning.getColumns(),tuning.getLifeProbability());
+		var rules = new Rules(tuning.getNeighboursToLive(), tuning.getNeighboursToReborn());
+		board.setRules(rules);
 		board.firstGeneration();
 	}
 

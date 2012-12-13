@@ -26,10 +26,9 @@ describe("LaserBoard", function() {
 
   it("evolves from one generation to another", function(){
   	board.firstGeneration();
-  	var aCell = board.get(0,0);
-  	spyOn(aCell,'tick');
+  	spyOn(board.rules,'tick');
   	board.nextGeneration();
-  	expect(aCell.tick).toHaveBeenCalled;
+  	expect(board.rules.tick).toHaveBeenCalled;
   });
 
 });
