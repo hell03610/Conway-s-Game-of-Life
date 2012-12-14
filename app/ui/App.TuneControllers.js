@@ -42,7 +42,7 @@ App.TuneControllers = function(){
 	}
 
 	function setRows(value){
-		$('#rows').val(value);
+		$('#rows').val(value || 80);
 	}
 
 	function getColumns(){
@@ -50,7 +50,7 @@ App.TuneControllers = function(){
 	}
 
 	function setColumns(value){
-		return $('#columns').val(value);
+		return $('#columns').val(value || 80);
 	}
 
 	function getLifeProbability(){
@@ -58,7 +58,8 @@ App.TuneControllers = function(){
 	}
 
 	function setLifeProbability(value){
-		initSlider(parseFloat(value) * 100);
+		value = (parseFloat(value) * 100) || 0.2 
+		initSlider(value);
 	}	
 	
 
