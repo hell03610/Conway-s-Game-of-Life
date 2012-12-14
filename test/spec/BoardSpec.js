@@ -36,9 +36,9 @@ describe("Board", function() {
 
   it("evolves from one generation to another", function(){
   	board.firstGeneration();
-  	spyOn(board.rules,'tick');
+  	spyOn(board.god,'sentence');
   	board.nextGeneration();
-  	expect(board.rules.tick).toHaveBeenCalled;
+  	expect(board.god.sentence).toHaveBeenCalled;
   });
 
 });

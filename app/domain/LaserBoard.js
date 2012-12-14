@@ -17,7 +17,7 @@ var LaserBoard = function(rows, columns, lifeProbability){
 	board.laserNextGeneration = function(){
 		this.forEachPosition(function(x,y){
 			var aliveNeighbours = this.laserAliveNeighboursFor(x,y);
-			this.rules.tick(this.get(x,y), aliveNeighbours);
+			this.god.sentence(this.get(x,y), aliveNeighbours);
 		});
 			
 	}

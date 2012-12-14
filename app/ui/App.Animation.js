@@ -42,8 +42,8 @@ App.Animation = function(){
 
 	function createBoard(){
 		board = new Board(tuning.getRows(),tuning.getColumns(),tuning.getLifeProbability());
-		var rules = new Rules(tuning.getNeighboursToLive(), tuning.getNeighboursToReborn());
-		board.setRules(rules);
+		var god = new God(tuning.getNeighboursToLive(), tuning.getNeighboursToReborn());
+		board.setGod(god);
 		board.firstGeneration();
 	}
 
