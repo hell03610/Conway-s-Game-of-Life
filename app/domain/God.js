@@ -8,10 +8,14 @@ var God = function(neighboursToLive, neighboursToReborn) {
 
 
 	function sentence(cell, aliveNeighbours){
-		cellAliveNeighbours = aliveNeighbours + '';
-		theCell = cell;
+		setVariables(cell, aliveNeighbours);
 		if(cellShouldLive()) theCell.live();
 		else theCell.die();
+	}
+
+	function setVariables(cell, aliveNeighbours){
+		cellAliveNeighbours = aliveNeighbours + '';
+		theCell = cell;
 	}
 
 	function cellShouldLive(){
