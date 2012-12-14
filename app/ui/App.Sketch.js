@@ -23,7 +23,7 @@ App.Sketch = function($p) {
     function setup() {
         $p.size(w, h);
         $p.strokeWeight(2);
-        $p.frameRate(4);
+        $p.frameRate(2);
         board = App.Animation.getBoard();
     }
 
