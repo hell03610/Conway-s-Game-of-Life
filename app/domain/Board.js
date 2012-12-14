@@ -77,13 +77,11 @@ var Board = function(rows, columns, lifeProbability){
 
 	this.isAlive = function(x,y){
 		var cell = this.get(x, y);
-		if(!cell) return false;
-		return cell.isAlive();		
+		return cell && cell.isAlive();
 	}
 
 	this.wasAlive = function(x,y){
 		var cell = this.get(x, y);
-		if(!cell) return false;
-		return cell.wasAlive();		
+		return cell && cell.wasAlive();
 	}
 }
