@@ -25,6 +25,7 @@ App.Animation = function(){
 	}
 
 	function start(){
+		saveControllerValues();
 		createBoard();
 		startSketch();
 		resetPause();
@@ -38,6 +39,10 @@ App.Animation = function(){
 		switchSketchState(isPaused);
 		$pause.text(isPaused?'Pause':'Resume');
 		isPaused = !isPaused;
+	}
+
+	function saveControllerValues(){
+		App.TuneControllers.save();
 	}
 
 	function createBoard(){
