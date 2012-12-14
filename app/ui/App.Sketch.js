@@ -1,3 +1,10 @@
+App.SketchSettings = {
+    backgroundColor: 0xFFF0F0D8,
+    newBornCellColor: 0xFFC0D860,
+    aliveCellColor: 0xFF789048,
+    strokeColor: 0xFF604848
+}
+
 App.Sketch = function($p) {
 
     var w = 600,
@@ -21,36 +28,38 @@ App.Sketch = function($p) {
     }
 
     function initBackground(){
-        $p.background(240,240,216);
-        $p.stroke(96,72,72);
+        $p.background(App.SketchSettings.backgroundColor);
+        $p.stroke(App.SketchSettings.strokeColor);
+    }
+
+    function forEachCell(next){
+     for(var i=0;i<rows;i++){
+          for(var j=0;j<columns;j++){
+            next.call(this, i, j, board.get(i,j));
+        }
+      }   
+    }
+
+    function paintCell(i,j,color){
+        $p.fill(color);
+        var x = (i * diameterX) + (diameterX * 0.5);
+        var y = (j * diameterY) + (diameterY * 0.5);
+        $p.ellipse(x,y, diameterX, diameterY);
     }
 
     function draw() {
     
         initBackground();
-
-        var X = diameterX * 0.5,
-            Y = diameterY * 0.5;
-
+       
         var totalCells = 0;
-     
-        for(var i=0;i<rows;i++){
-          for(var j=0;j<columns;j++){
-              var cell = board.get(i,j);
-              if(cell && cell.isAlive()){
-                
-                if(cell.isNewBorn()) $p.fill(192,216,96);
-                else $p.fill(120,144,72);
-
-                $p.ellipse(X, Y, diameterX, diameterY);
+         forEachCell(function(i, j, cell){
+            if(cell && cell.isAlive()){
+                var color = cell.isNewBorn() ? App.SketchSettings.newBornCellColor : App.SketchSettings.aliveCellColor;
+                paintCell(i,j,color);
                 totalCells++;
-              }
-              Y += diameterY;
-          }
-          X += diameterX; 
-          Y = diameterY * 0.5;
-        }
-
+            }
+        });
+       
         board.nextGeneration();
         generation++;
         $generation.text(generation);
