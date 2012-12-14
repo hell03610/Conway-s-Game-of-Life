@@ -15,12 +15,11 @@ var LaserBoard = function(rows, columns, lifeProbability){
 	}
 	
 	board.laserNextGeneration = function(){
-			for(var i=0;i<this.rows;i++){
-				for(var j=0;j<this.columns;j++){
-					var aliveNeighbours = this.laserAliveNeighboursFor(i,j);
-					this.rules.tick(this.get(i,j), aliveNeighbours);
-				}
-			}
+		this.forEachPosition(function(x,y){
+			var aliveNeighbours = this.laserAliveNeighboursFor(x,y);
+			this.rules.tick(this.get(x,y), aliveNeighbours);
+		});
+			
 	}
 
 	board.nextGeneration = function(){

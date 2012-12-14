@@ -42,19 +42,25 @@ var Board = function(rows, columns, lifeProbability){
 		this.snapshotNextGeneration();
 	}
 
-	this.snapshotNextGeneration = function(){
+	this.forEachPosition = function(next){
 		for(var i=0;i<this.rows;i++){
 			for(var j=0;j<this.columns;j++){
-				var aliveNeighbours = this.snapshotAliveNeighboursFor(i,j);
-				//this.get(i,j).tick(aliveNeighbours);
-				this.rules.tick(this.get(i,j), aliveNeighbours);
+				next.call(this,i,j);
 			}
 		}
-		for(var i=0;i<this.rows;i++){
-			for(var j=0;j<this.columns;j++){
-				this.board[i][j].resetLastLifeStatus();
-			}
-		}	
+	}
+
+	this.snapshotNextGeneration = function(){
+		
+		this.forEachPosition(function(x,y){
+			var aliveNeighbours = this.snapshotAliveNeighboursFor(x,y);
+			this.rules.tick(this.get(x,y), aliveNeighbours);
+		});
+
+		this.forEachPosition(function(x,y){
+			this.board[x][y].resetLastLifeStatus();
+		});
+			
 	}	
 
 	this.lifeStatus = function(){
