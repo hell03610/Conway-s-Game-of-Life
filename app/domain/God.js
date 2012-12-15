@@ -19,14 +19,14 @@ var God = function(neighboursToLive, neighboursToReborn) {
 	}
 
 	function cellShouldLive(){
-		return isInLifeFriendlyNeighbourhood() || isInHealthyNeighbourhood();
+		return shouldKeepLife() || shouldReborn();
 	}
 
-	function isInLifeFriendlyNeighbourhood(){
-		return (LIFE_FRIENDLY_NEIGHBOUR.indexOf(cellAliveNeighbours) > -1);	
+	function shouldReborn(){
+		return (LIFE_FRIENDLY_NEIGHBOUR.indexOf(cellAliveNeighbours) > -1) && !theCell.isAlive();	
 	}
 
-	function isInHealthyNeighbourhood(){
+	function shouldKeepLife(){
 		return (HEALHY_NEIGHBOUR.indexOf(cellAliveNeighbours) > -1) && theCell.isAlive();	
 	}
 

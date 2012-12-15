@@ -29,6 +29,30 @@ describe("Board Acceptance", function() {
     expect(areEqual(board, fixture)).toBeTruthy();
   });
 
+  it("starts from a universe full of life", function(){
+     var fixture = [
+      [1,1,1,1],
+      [1,1,1,1],
+      [1,1,1,1],
+      [1,1,1,1]
+    ]
+
+    var expected1 = [
+      [0,1,1,0],
+      [1,0,0,1],
+      [1,0,0,1],
+      [0,1,1,0]
+    ]
+
+    rows = 4;
+    columns = 4;
+    board = new Board(rows, columns);
+    board.setGod(new God(['5'],['3','4']));
+    board.board = getBoardFromFixture(fixture);
+    board.nextGeneration();
+    expect(areEqual(board, expected1)).toBeTruthy();
+  });
+
   function getBoardFromFixture(fixture){
     var _board = [];
     for(var i=0;i<rows;i++){
@@ -51,6 +75,17 @@ describe("Board Acceptance", function() {
     }
 
     return equal;
-
   }  
+
+  function toConsole(board){
+   var _board = [];
+    for(var i=0;i<rows;i++){
+      _board[i] = [];
+      for(var j=0;j<columns;j++){
+        _board[i][j] = board.board[i][j].isAlive()? 1 : 0;
+      }
+    }
+
+    return _board; 
+  }
 });

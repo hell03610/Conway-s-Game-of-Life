@@ -7,6 +7,7 @@ describe("God", function() {
   it("reborns when the neighbourhood is life-friendly", function(){
     var cell = new Cell();
     var aliveNeighbours = 3;
+    god = new God([],['3']);
     god.sentence(cell, aliveNeighbours);
     expect(cell.isAlive()).toBeTruthy();
   });
